@@ -1,10 +1,10 @@
 server:
-  port: 8088
+  port: 5432
   servlet:
     context-path: /api/history
 management:
   server:
-    port: 8188
+    port: 5432
   endpoint:
     shutdown:
       enabled: true
@@ -14,8 +14,8 @@ management:
         include: '*'
 spring:
   datasource:
-    url: jdbc:postgresql://localhost:5432/postgres
-    username: user
+    url: jdbc:postgresql://localhost:5433/postgres
+    username: postgres
     password: password
   liquibase:
     default-schema: history
