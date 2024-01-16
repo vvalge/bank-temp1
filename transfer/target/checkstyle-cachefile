@@ -1,3 +1,14 @@
-#Wed Jan 11 19:35:38 MSK 2023
-configuration*?=C4FCF89F9CF078861C91E65C4E6129250E6C2EDD
-/Users/sergey/Projects/\!JM/transfer/src/main/java/com/bank/transfer/TransferApplication.java=1673454614218
+#Tue Jan 16 23:54:26 MSK 2024
+D\:\\KATA\\Project\\p_ss_bank_25\\transfer\\src\\main\\java\\com\\bank\\transfer\\config\\AuditConfig.java=1705160354376
+D\:\\KATA\\Project\\p_ss_bank_25\\transfer\\src\\main\\java\\com\\bank\\transfer\\repository\\AuditRepository.java=1704812466650
+D\:\\KATA\\Project\\p_ss_bank_25\\transfer\\src\\main\\java\\com\\bank\\transfer\\repository\\CardRepository.java=1705428582240
+configuration*?=904C4882FA80C80391516228E27EB73BF30EEB66
+D\:\\KATA\\Project\\p_ss_bank_25\\transfer\\src\\main\\java\\com\\bank\\transfer\\mapper\\CardDtoFactory.java=1705428582255
+D\:\\KATA\\Project\\p_ss_bank_25\\transfer\\src\\main\\java\\com\\bank\\transfer\\config\\SwaggerConfig.java=1705428582265
+D\:\\KATA\\Project\\p_ss_bank_25\\transfer\\src\\main\\java\\com\\bank\\transfer\\repository\\PhoneRepository.java=1703350933681
+D\:\\KATA\\Project\\p_ss_bank_25\\transfer\\src\\main\\java\\com\\bank\\transfer\\service\\TransferService.java=1705428582247
+D\:\\KATA\\Project\\p_ss_bank_25\\transfer\\src\\main\\java\\com\\bank\\transfer\\aspects\\LogAllTransferMethods.java=1705428582231
+D\:\\KATA\\Project\\p_ss_bank_25\\transfer\\src\\main\\java\\com\\bank\\transfer\\mapper\\PhoneDtoFactory.java=1705168442305
+D\:\\KATA\\Project\\p_ss_bank_25\\transfer\\src\\main\\java\\com\\bank\\transfer\\repository\\AccountRepository.java=1705428582260
+D\:\\KATA\\Project\\p_ss_bank_25\\transfer\\src\\main\\java\\com\\bank\\transfer\\TransferApplication.java=1705434811869
+D\:\\KATA\\Project\\p_ss_bank_25\\transfer\\src\\main\\java\\com\\bank\\transfer\\mapper\\AccountDtoFactory.java=1705428582277

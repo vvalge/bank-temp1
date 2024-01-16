@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="ru"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>AuditEntity.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">transfer</a> &gt; <a href="index.source.html" class="el_package">com.bank.transfer.model</a> &gt; <span class="el_source">AuditEntity.java</span></div><h1>AuditEntity.java</h1><pre class="source lang-java linenums">package com.bank.transfer.model;
+
+import lombok.*;
+import lombok.experimental.FieldDefaults;
+import javax.persistence.*;
+import java.time.ZonedDateTime;
+
+<span class="nc" id="L8">@Builder</span>
+@Getter
+<span class="pc" id="L10">@Setter</span>
+@FieldDefaults(level = AccessLevel.PRIVATE)
+<span class="fc" id="L12">@NoArgsConstructor</span>
+<span class="nc" id="L13">@AllArgsConstructor</span>
+@Entity
+@Table(name = &quot;audit&quot;, schema = &quot;transfer&quot;)
+public class AuditEntity {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+<span class="fc" id="L19">    Long id;</span>
+
+    @Column(name = &quot;entity_type&quot;, length = 40, nullable = false)
+<span class="nc" id="L22">    String entityType;</span>
+
+    @Column(name = &quot;operation_type&quot;, nullable = false)
+<span class="nc" id="L25">    String operationType;</span>
+
+    @Column(name = &quot;created_by&quot;,nullable = false)
+<span class="nc" id="L28">    String createdBy;</span>
+
+    @Column(name = &quot;modified_by&quot;)
+<span class="nc" id="L31">    String modifiedBy;</span>
+
+    @Column(name = &quot;created_at&quot;, nullable = false)
+<span class="nc" id="L34">    ZonedDateTime createdAt;</span>
+
+    @Column(name = &quot;modified_at&quot;)
+<span class="nc" id="L37">    ZonedDateTime modifiedAt;</span>
+
+    @Column(columnDefinition = &quot;TEXT&quot;)
+<span class="nc" id="L40">    String newEntityJson;</span>
+
+    @Column(columnDefinition = &quot;TEXT&quot;, nullable = false)
+<span class="nc" id="L43">    String entityJson;</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>
