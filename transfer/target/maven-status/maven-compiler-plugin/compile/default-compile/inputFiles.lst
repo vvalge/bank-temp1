@@ -11,13 +11,12 @@ D:\KATA\Project\p_ss_bank_25\transfer\src\main\java\com\bank\transfer\dto\PhoneD
 D:\KATA\Project\p_ss_bank_25\transfer\src\main\java\com\bank\transfer\repository\AccountRepository.java
 D:\KATA\Project\p_ss_bank_25\transfer\src\main\java\com\bank\transfer\repository\AuditRepository.java
 D:\KATA\Project\p_ss_bank_25\transfer\src\main\java\com\bank\transfer\aspects\LogAuditAspect.java
-D:\KATA\Project\p_ss_bank_25\transfer\src\main\java\com\bank\transfer\dto\AuditDto.java
+D:\KATA\Project\p_ss_bank_25\transfer\src\main\java\com\bank\transfer\aspects\LogStartControllerAspect.java
 D:\KATA\Project\p_ss_bank_25\transfer\src\main\java\com\bank\transfer\repository\CardRepository.java
 D:\KATA\Project\p_ss_bank_25\transfer\src\main\java\com\bank\transfer\model\PhoneEntity.java
 D:\KATA\Project\p_ss_bank_25\transfer\src\main\java\com\bank\transfer\service\TransferService.java
 D:\KATA\Project\p_ss_bank_25\transfer\src\main\java\com\bank\transfer\service\TransferServiceImpl.java
 D:\KATA\Project\p_ss_bank_25\transfer\src\main\java\com\bank\transfer\mapper\AccountDtoFactory.java
-D:\KATA\Project\p_ss_bank_25\transfer\src\main\java\com\bank\transfer\aspects\LogAllTransferMethods.java
 D:\KATA\Project\p_ss_bank_25\transfer\src\main\java\com\bank\transfer\dto\CardDto.java
 D:\KATA\Project\p_ss_bank_25\transfer\src\main\java\com\bank\transfer\controller\TransferController.java
 D:\KATA\Project\p_ss_bank_25\transfer\src\main\java\com\bank\transfer\model\AccountEntity.java

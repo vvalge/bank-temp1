@@ -15,6 +15,9 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.transaction.annotation.Transactional;
 import java.math.BigDecimal;
 
+/**
+ * Класс теста "Сервиса переводов"
+ */
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringBootTest(classes = TransferApplication.class)
 @FieldDefaults(level = AccessLevel.PRIVATE)
@@ -24,6 +27,9 @@ public class TransferServiceImplTest {
     @Autowired
     TransferService service;
 
+    /**
+     * Метод теста переводов по номеру счета
+     */
     @Transactional
     @Test
     public void transferByAccountNumber() {
@@ -45,9 +51,13 @@ public class TransferServiceImplTest {
         service.transferByAccountNumber(account1);
     }
 
+    /**
+     * Метод теста переводов по номеру карты
+     */
     @Transactional
     @Test
     public void transferByCardNumber() {
+
         CardEntity card = new CardEntity();
         CardEntity card1 = new CardEntity();
 
@@ -65,6 +75,9 @@ public class TransferServiceImplTest {
         service.transferByCardNumber(card1);
     }
 
+    /**
+     * Метод теста переводов по номеру телефона
+     */
     @Transactional
     @Test
     public void transferByPhoneNumber() {

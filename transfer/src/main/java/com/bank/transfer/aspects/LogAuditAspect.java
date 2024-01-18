@@ -17,6 +17,9 @@ import org.springframework.stereotype.Component;
 
 import java.time.ZonedDateTime;
 
+/**
+ * Класс описывающий аудирование
+ */
 @Slf4j
 @Component
 @Aspect
@@ -25,8 +28,18 @@ import java.time.ZonedDateTime;
 @Order(10)
 public class LogAuditAspect {
 
+    /**
+     * @see com.bank.transfer.service.TransferService
+     */
     TransferService transferService;
 
+    /**
+     * Метод аудирования при выполнении перевода по номеру счета
+     * @param proceedingJoinPoint точки наблюдения, присоединения к коду, где планируется введение функциональности
+     * @param entity AccountEntity
+     * @return результирующий объект обрабатываемого метода
+     * @throws Throwable возможны ошибки и исключения
+     */
     @Around(value = "execution(public void transferByAccountNumber(com.bank.transfer.model.AccountEntity)) && args(entity)")
     public Object accountServiceLoggingAspect(ProceedingJoinPoint proceedingJoinPoint, AccountEntity entity) throws Throwable {
 
@@ -45,7 +58,13 @@ public class LogAuditAspect {
             audit.setOperationType(proceedingJoinPoint.getSignature().getName());
             audit.setCreatedBy(entity.getAccountDetailsId().toString());
             audit.setCreatedAt(ZonedDateTime.now());
-            audit.setEntityJson(entity.toString());
+            audit.setEntityJson(entity.builder()
+                            .id(entity.getId())
+                            .number(entity.getNumber())
+                            .amount(entity.getAmount())
+                            .purpose(entity.getPurpose())
+                            .accountDetailsId(entity.getAccountDetailsId())
+                    .build().toString());
             transferService.saveAudit(audit);
             log.info("AROUND After Returning - The transfer by account number was completed successfully");
             return result;
@@ -55,6 +74,13 @@ public class LogAuditAspect {
         }
     }
 
+    /**
+     * Метод аудирования при выполнении перевода по номеру карты
+     * @param proceedingJoinPoint точки наблюдения, присоединения к коду, где планируется введение функциональности
+     * @param entity CardEntity
+     * @return результирующий объект обрабатываемого метода
+     * @throws Throwable возможны ошибки и исключения
+     */
     @Around(value = "execution(public void transferByCardNumber(com.bank.transfer.model.CardEntity)) && args(entity)")
     public Object accountServiceLoggingAspect(ProceedingJoinPoint proceedingJoinPoint, CardEntity entity) throws Throwable {
 
@@ -73,7 +99,13 @@ public class LogAuditAspect {
             audit.setOperationType(proceedingJoinPoint.getSignature().getName());
             audit.setCreatedBy(entity.getAccountDetailsId().toString());
             audit.setCreatedAt(ZonedDateTime.now());
-            audit.setEntityJson(entity.toString());
+            audit.setEntityJson(entity.builder()
+                    .id(entity.getId())
+                    .number(entity.getNumber())
+                    .amount(entity.getAmount())
+                    .purpose(entity.getPurpose())
+                    .accountDetailsId(entity.getAccountDetailsId())
+                    .build().toString());
             transferService.saveAudit(audit);
             log.info("AROUND After Returning - The transfer by card number was completed successfully");
             return result;
@@ -83,6 +115,13 @@ public class LogAuditAspect {
         }
     }
 
+    /**
+     * Метод аудирования при выполнении перевода по номеру телефона
+     * @param proceedingJoinPoint точки наблюдения, присоединения к коду, где планируется введение функциональности
+     * @param entity PhoneEntity
+     * @return результирующий объект обрабатываемого метода
+     * @throws Throwable возможны ошибки и исключения
+     */
     @Around(value = "execution(public void transferByPhoneNumber(com.bank.transfer.model.PhoneEntity)) && args(entity)")
     public Object accountServiceLoggingAspect(ProceedingJoinPoint proceedingJoinPoint, PhoneEntity entity) throws Throwable {
 
@@ -96,8 +135,14 @@ public class LogAuditAspect {
             audit.setEntityType(entity.getClass().getSimpleName());
             audit.setOperationType(proceedingJoinPoint.getSignature().getName());
             audit.setCreatedBy(entity.getAccountDetailsId().toString());
-            audit.setCreatedAt(ZonedDateTime.now());//calendar.getTime()
-            audit.setEntityJson(entity.toString());
+            audit.setCreatedAt(ZonedDateTime.now());
+            audit.setEntityJson(entity.builder()
+                    .id(entity.getId())
+                    .number(entity.getNumber())
+                    .amount(entity.getAmount())
+                    .purpose(entity.getPurpose())
+                    .accountDetailsId(entity.getAccountDetailsId())
+                    .build().toString());
             transferService.saveAudit(audit);
             log.info("AROUND After Returning - The transfer by phone number was completed successfully");
             return result;

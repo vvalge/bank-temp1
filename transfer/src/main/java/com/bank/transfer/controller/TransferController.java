@@ -23,7 +23,9 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 
-
+/**
+ * Класс для обработки запросов на перевод
+ */
 @Slf4j
 @RestController
 @OpenAPIDefinition(info = @Info(
@@ -35,11 +37,32 @@ import javax.validation.Valid;
 @RequestMapping("/")
 public class TransferController {
 
+    /**
+     * @see com.bank.transfer.service.TransferService
+     */
     TransferService transferService;
+
+    /**
+     * @see com.bank.transfer.mapper.AccountDtoFactory
+     */
     AccountDtoFactory accountDtoFactory;
+
+    /**
+     * @see com.bank.transfer.model.CardEntity
+     */
     CardDtoFactory cardDtoFactory;
+
+    /**
+     * @see com.bank.transfer.model.PhoneEntity
+     */
     PhoneDtoFactory phoneDtoFactory;
 
+    /**
+     * Метод обработки Post запроса на перевод по номеру счета
+     * @param accountDto объект модели "AccountEntity"
+     * @param id технический идентификатор банковского счета
+     * @return статус выполнения запроса
+     */
     //-------- ПЕРЕВОД ----------- //
     // перевод по номеру счета
     @PostMapping("/account/{id}")
@@ -57,6 +80,12 @@ public class TransferController {
         }
     }
 
+    /**
+     * Метод обработки Post запроса на перевод по номеру карты
+     * @param cardDto объект модели "CardEntity"
+     * @param id технический идентификатор банковского счета
+     * @return статус выполнения запроса
+     */
     // перевод по номеру карты
     @PostMapping("/card/{id}")
     @Operation(summary = "Перевод по номеру карты", description = "Выполненяем перевод по номеру карты")
@@ -74,6 +103,12 @@ public class TransferController {
 
     }
 
+    /**
+     * Метод обработки Post запроса на перевод по номеру телефона
+     * @param phoneDto объект модели "PhoneEntity"
+     * @param id технический идентификатор банковского счета
+     * @return статус выполнения запроса
+     */
     // перевод по номеру телефона
     @PostMapping("/phone/{id}")
     @Operation(summary = "Перевод по номеру телефона", description = "Выполненяем перевод по номеру телефона")

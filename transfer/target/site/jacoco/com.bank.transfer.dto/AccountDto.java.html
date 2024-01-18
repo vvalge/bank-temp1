@@ -4,19 +4,22 @@ import lombok.*;
 import lombok.experimental.FieldDefaults;
 import java.math.BigDecimal;
 
-<span class="pc bpc" id="L7" title="48 of 50 branches missed.">@Data</span>
-<span class="pc bpc" id="L8" title="2 of 4 branches missed.">@Builder</span>
-<span class="fc" id="L9">@NoArgsConstructor</span>
-<span class="pc bpc" id="L10" title="2 of 4 branches missed.">@AllArgsConstructor</span>
+/**
+ * Класс описывающий объект модели перевода по номеру счета, который используется для передачи данных между подсистемами приложения
+ */
+<span class="pc bpc" id="L10" title="48 of 50 branches missed.">@Data</span>
+<span class="pc bpc" id="L11" title="2 of 4 branches missed.">@Builder</span>
+<span class="fc" id="L12">@NoArgsConstructor</span>
+<span class="pc bpc" id="L13" title="2 of 4 branches missed.">@AllArgsConstructor</span>
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class AccountDto {
 
-<span class="fc" id="L14">    Long id;</span>
+<span class="fc" id="L17">    Long id;</span>
     @NonNull
-<span class="fc" id="L16">    Long number;</span>
+<span class="fc" id="L19">    Long number;</span>
     @NonNull
-<span class="fc" id="L18">    BigDecimal amount;</span>
-<span class="fc" id="L19">    String purpose;</span>
-<span class="fc" id="L20">    Long accountDetailsId;</span>
+<span class="fc" id="L21">    BigDecimal amount;</span>
+<span class="fc" id="L22">    String purpose;</span>
+<span class="fc" id="L23">    Long accountDetailsId;</span>
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

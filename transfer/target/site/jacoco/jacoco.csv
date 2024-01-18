@@ -1,14 +1,14 @@
 GROUP,PACKAGE,CLASS,INSTRUCTION_MISSED,INSTRUCTION_COVERED,BRANCH_MISSED,BRANCH_COVERED,LINE_MISSED,LINE_COVERED,COMPLEXITY_MISSED,COMPLEXITY_COVERED,METHOD_MISSED,METHOD_COVERED
 transfer,com.bank.transfer.service,TransferServiceImpl,33,70,0,4,9,19,0,8,0,6
 transfer,com.bank.transfer.controller,TransferController,24,88,6,6,6,17,6,5,0,5
-transfer,com.bank.transfer.dto,AuditDto,435,0,78,0,14,0,64,0,25,0
 transfer,com.bank.transfer.dto,PhoneDto.PhoneDtoBuilder,22,46,2,2,0,1,3,7,1,7
 transfer,com.bank.transfer.dto,CardDto.CardDtoBuilder,22,46,2,2,0,1,3,7,1,7
 transfer,com.bank.transfer.dto,AccountDto,217,68,50,4,0,9,31,13,4,13
-transfer,com.bank.transfer.dto,AuditDto.AuditDtoBuilder,90,0,0,0,1,0,12,0,12,0
 transfer,com.bank.transfer.dto,PhoneDto,217,68,50,4,0,9,31,13,4,13
 transfer,com.bank.transfer.dto,CardDto,217,68,50,4,0,9,31,13,4,13
 transfer,com.bank.transfer.dto,AccountDto.AccountDtoBuilder,22,46,2,2,0,1,3,7,1,7
+transfer,com.bank.transfer.aspects,LogStartControllerAspect,0,11,0,0,0,4,0,3,0,3
+transfer,com.bank.transfer.aspects,LogAuditAspect,36,237,2,2,11,64,2,5,0,5
 transfer,com.bank.transfer.model,AuditEntity,74,26,0,0,10,3,14,7,14,7
 transfer,com.bank.transfer.model,AccountEntity,0,60,0,0,0,9,0,13,0,13
 transfer,com.bank.transfer.model,CardEntity,0,60,0,0,0,9,0,13,0,13
@@ -17,8 +17,6 @@ transfer,com.bank.transfer.model,CardEntity.CardEntityBuilder,12,42,0,0,0,1,1,7,
 transfer,com.bank.transfer.model,AuditEntity.AuditEntityBuilder,90,0,0,0,1,0,12,0,12,0
 transfer,com.bank.transfer.model,AccountEntity.AccountEntityBuilder,12,42,0,0,0,1,1,7,1,7
 transfer,com.bank.transfer.model,PhoneEntity,0,60,0,0,0,9,0,13,0,13
-transfer,com.bank.transfer.aspects,LogAllTransferMethods,0,11,0,0,0,4,0,3,0,3
-transfer,com.bank.transfer.aspects,LogAuditAspect,36,183,2,2,11,46,2,5,0,5
 transfer,com.bank.transfer.mapper,CardDtoFactory,0,39,0,0,0,15,0,3,0,3
 transfer,com.bank.transfer.mapper,PhoneDtoFactory,0,39,0,0,0,15,0,3,0,3
 transfer,com.bank.transfer.mapper,AccountDtoFactory,0,39,0,0,0,15,0,3,0,3

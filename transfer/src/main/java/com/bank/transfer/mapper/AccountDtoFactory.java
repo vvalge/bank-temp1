@@ -4,9 +4,17 @@ import com.bank.transfer.dto.AccountDto;
 import com.bank.transfer.model.AccountEntity;
 import org.springframework.stereotype.Component;
 
+/**
+ * Класс преобразования модели для переводов по номеру счета в Dto и обратно
+ */
 @Component
 public class AccountDtoFactory {
 
+    /**
+     * метод преобразования модели в Dto
+     * @param entity модель для переводов по номеру счета
+     * @return AccountDto
+     */
     public AccountDto makeAccountEntityToDto(AccountEntity entity) {
         return AccountDto.builder()
                 .id(entity.getId())
@@ -17,6 +25,11 @@ public class AccountDtoFactory {
                 .build();
     }
 
+    /**
+     * метод преобразования Dto в модель
+     * @param dto Dto для переводов по номеру счета
+     * @return AccountEntity
+     */
     public AccountEntity makeAccountDtoToEntity(AccountDto dto) {
         return AccountEntity.builder()
                 .id(dto.getId())

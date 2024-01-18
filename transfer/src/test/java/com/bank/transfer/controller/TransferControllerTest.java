@@ -31,6 +31,10 @@ import java.math.BigDecimal;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
+/**
+ * Класс теста запросов на перевод
+ * Класс теста Контроллера
+ */
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringBootTest(classes = TransferApplication.class)
 @FieldDefaults(level = AccessLevel.PRIVATE)
@@ -51,6 +55,10 @@ public class TransferControllerTest {
         mvc = MockMvcBuilders.webAppContextSetup(context).build();
     }
 
+    /**
+     * Метод теста переводов по номеру счета
+     * @throws Exception возможны исключения
+     */
     @Transactional
     @Test
     public void transferByAccountNumber() throws Exception {
@@ -87,6 +95,10 @@ public class TransferControllerTest {
                 .andDo(print());
     }
 
+    /**
+     * Метод теста переводов по номеру карты
+     * @throws Exception возможны исключения
+     */
     @Transactional
     @Test
     public void transferByCardNumber() throws Exception {
@@ -124,6 +136,10 @@ public class TransferControllerTest {
                 .andDo(print());
     }
 
+    /**
+     * Метод теста переводов по номеру телефона
+     * @throws Exception возможны исключения
+     */
     @Transactional
     @Test
     public void transferByPhoneNumber() throws Exception {

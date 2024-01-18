@@ -4,26 +4,40 @@ import com.bank.transfer.dto.CardDto;
 import com.bank.transfer.model.CardEntity;
 import org.springframework.stereotype.Component;
 
+/**
+ * Класс преобразования модели для переводов по номеру карты в Dto и обратно
+ */
 @Component
-<span class="fc" id="L8">public class CardDtoFactory {</span>
+<span class="fc" id="L11">public class CardDtoFactory {</span>
+
+    /**
+     * метод преобразования модели в Dto
+     * @param entity модель для переводов по номеру карты
+     * @return CardDto
+     */
     public CardDto makeCardEntityToDto(CardEntity entity) {
-<span class="fc" id="L10">        return CardDto.builder()</span>
-<span class="fc" id="L11">                .id(entity.getId())</span>
-<span class="fc" id="L12">                .number(entity.getNumber())</span>
-<span class="fc" id="L13">                .amount(entity.getAmount())</span>
-<span class="fc" id="L14">                .purpose(entity.getPurpose())</span>
-<span class="fc" id="L15">                .accountDetailsId(entity.getAccountDetailsId())</span>
-<span class="fc" id="L16">                .build();</span>
+<span class="fc" id="L19">        return CardDto.builder()</span>
+<span class="fc" id="L20">                .id(entity.getId())</span>
+<span class="fc" id="L21">                .number(entity.getNumber())</span>
+<span class="fc" id="L22">                .amount(entity.getAmount())</span>
+<span class="fc" id="L23">                .purpose(entity.getPurpose())</span>
+<span class="fc" id="L24">                .accountDetailsId(entity.getAccountDetailsId())</span>
+<span class="fc" id="L25">                .build();</span>
     }
 
+    /**
+     * метод преобразования Dto в модель
+     * @param dto Dto для переводов по номеру телефона
+     * @return CardEntity
+     */
     public CardEntity makeCardDtoToEntity(CardDto dto) {
-<span class="fc" id="L20">        return CardEntity.builder()</span>
-<span class="fc" id="L21">                .id(dto.getId())</span>
-<span class="fc" id="L22">                .number(dto.getNumber())</span>
-<span class="fc" id="L23">                .amount(dto.getAmount())</span>
-<span class="fc" id="L24">                .purpose(dto.getPurpose())</span>
-<span class="fc" id="L25">                .accountDetailsId(dto.getAccountDetailsId())</span>
-<span class="fc" id="L26">                .build();</span>
+<span class="fc" id="L34">        return CardEntity.builder()</span>
+<span class="fc" id="L35">                .id(dto.getId())</span>
+<span class="fc" id="L36">                .number(dto.getNumber())</span>
+<span class="fc" id="L37">                .amount(dto.getAmount())</span>
+<span class="fc" id="L38">                .purpose(dto.getPurpose())</span>
+<span class="fc" id="L39">                .accountDetailsId(dto.getAccountDetailsId())</span>
+<span class="fc" id="L40">                .build();</span>
     }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

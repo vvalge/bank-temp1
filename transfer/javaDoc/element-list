@@ -1,0 +1,9 @@
+com.bank.transfer
+com.bank.transfer.aspects
+com.bank.transfer.config
+com.bank.transfer.controller
+com.bank.transfer.dto
+com.bank.transfer.mapper
+com.bank.transfer.model
+com.bank.transfer.repository
+com.bank.transfer.service

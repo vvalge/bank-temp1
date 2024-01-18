@@ -4,8 +4,17 @@ import com.bank.transfer.dto.PhoneDto;
 import com.bank.transfer.model.PhoneEntity;
 import org.springframework.stereotype.Component;
 
+/**
+ * Класс преобразования модели для переводов по номеру телефона в Dto и обратно
+ */
 @Component
 public class PhoneDtoFactory {
+
+    /**
+     * метод преобразования модели в Dto
+     * @param entity модель для переводов по номеру телефона
+     * @return PhoneDto
+     */
     public PhoneDto makePhoneEntityToDto(PhoneEntity entity) {
         return PhoneDto.builder()
                 .id(entity.getId())
@@ -16,7 +25,11 @@ public class PhoneDtoFactory {
                 .build();
     }
 
-    // конвертация Dto в Entity
+    /**
+     * метод преобразования Dto в модель
+     * @param dto Dto для переводов по номеру телефона
+     * @return PhoneEntity
+     */
     public PhoneEntity makePhoneDtoToEntity(PhoneDto dto) {
         return PhoneEntity.builder()
                 .id(dto.getId())
@@ -25,12 +38,5 @@ public class PhoneDtoFactory {
                 .purpose(dto.getPurpose())
                 .accountDetailsId(dto.getAccountDetailsId())
                 .build();
-        /*PhoneEntity entity = new PhoneEntity();
-        entity.setId(dto.getId());
-        entity.setNumber(dto.getNumber());
-        entity.setAmount(dto.getAmount());
-        entity.setPurpose(dto.getPurpose());
-        entity.setAccountDetailsId(dto.getAccountDetailsId());
-        return entity;*/
     }
 }
