@@ -1,9 +1,10 @@
-#Thu Jan 18 05:46:42 MSK 2024
+#Thu Jan 18 22:14:45 MSK 2024
 D\:\\KATA\\Project\\p_ss_bank_25\\transfer\\src\\main\\java\\com\\bank\\transfer\\config\\AuditConfig.java=1705532765573
 D\:\\KATA\\Project\\p_ss_bank_25\\transfer\\src\\main\\java\\com\\bank\\transfer\\aspects\\LogStartControllerAspect.java=1705535192309
 D\:\\KATA\\Project\\p_ss_bank_25\\transfer\\src\\main\\java\\com\\bank\\transfer\\repository\\AuditRepository.java=1705541298617
 D\:\\KATA\\Project\\p_ss_bank_25\\transfer\\src\\main\\java\\com\\bank\\transfer\\repository\\CardRepository.java=1705541345322
 configuration*?=904C4882FA80C80391516228E27EB73BF30EEB66
+D\:\\KATA\\Project\\p_ss_bank_25\\transfer\\src\\main\\java\\com\\bank\\transfer\\model\\PhoneEntity.java=1705605237237
 D\:\\KATA\\Project\\p_ss_bank_25\\transfer\\src\\main\\java\\com\\bank\\transfer\\mapper\\CardDtoFactory.java=1705531520799
 D\:\\KATA\\Project\\p_ss_bank_25\\transfer\\src\\main\\java\\com\\bank\\transfer\\config\\SwaggerConfig.java=1705532765587
 D\:\\KATA\\Project\\p_ss_bank_25\\transfer\\src\\main\\java\\com\\bank\\transfer\\repository\\PhoneRepository.java=1705541360512
