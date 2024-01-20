@@ -30,13 +30,13 @@ import javax.validation.Valid;
 /**
  * Класс для обработки запросов на перевод
  */
-<span class="fc" id="L33">@Slf4j</span>
+<span class="nc" id="L33">@Slf4j</span>
 @RestController
 @OpenAPIDefinition(info = @Info(
         title = &quot;TransferController&quot;,
         version = &quot;1.0.0&quot;,
         description = &quot;контроллер для работы с операциями перевода&quot;))
-<span class="fc" id="L39">@AllArgsConstructor(access = AccessLevel.PUBLIC)</span>
+<span class="nc" id="L39">@AllArgsConstructor(access = AccessLevel.PUBLIC)</span>
 @FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
 @RequestMapping(&quot;/&quot;)
 public class TransferController {
@@ -69,18 +69,18 @@ public class TransferController {
      */
     //-------- ПЕРЕВОД ----------- //
     // перевод по номеру счета
-    @PostMapping(&quot;/account/{id}&quot;)
+    @PostMapping(path = &quot;/account/{id}&quot;, consumes = &quot;application/json&quot;, produces = &quot;application/json&quot;)
     @Operation(summary = &quot;Перевод по номеру счета&quot;, description = &quot;Выполненяем перевод по номеру счета&quot;)
     public ResponseEntity&lt;HttpStatus&gt; transferByAccountNumber(@RequestBody AccountDto accountDto, @PathVariable @Valid Long id) {
 
-<span class="fc" id="L76">        AccountEntity accountEntity = accountDtoFactory.makeAccountDtoToEntity(accountDto);</span>
-<span class="pc bpc" id="L77" title="2 of 4 branches missed.">        if (accountEntity.getNumber() == null || accountEntity.getAmount() == null) {</span>
+<span class="nc" id="L76">        AccountEntity accountEntity = accountDtoFactory.makeAccountDtoToEntity(accountDto);</span>
+<span class="nc bnc" id="L77" title="All 4 branches missed.">        if (accountEntity.getNumber() == null || accountEntity.getAmount() == null) {</span>
 <span class="nc" id="L78">            log.error(&quot;TransferController.transferByAccountNumber: Notnull field by AccountEntity is null&quot;);</span>
 <span class="nc" id="L79">            return new ResponseEntity&lt;&gt;(HttpStatus.BAD_REQUEST);</span>
         } else {
-<span class="fc" id="L81">            accountEntity.setAccountDetailsId(id);</span>
-<span class="fc" id="L82">            transferService.transferByAccountNumber(accountEntity);</span>
-<span class="fc" id="L83">            return new ResponseEntity&lt;&gt;(HttpStatus.OK);</span>
+<span class="nc" id="L81">            accountEntity.setAccountDetailsId(id);</span>
+<span class="nc" id="L82">            transferService.transferByAccountNumber(accountEntity);</span>
+<span class="nc" id="L83">            return new ResponseEntity&lt;&gt;(HttpStatus.OK);</span>
         }
     }
 
@@ -95,14 +95,14 @@ public class TransferController {
     @Operation(summary = &quot;Перевод по номеру карты&quot;, description = &quot;Выполненяем перевод по номеру карты&quot;)
     public ResponseEntity&lt;HttpStatus&gt; transferByCardNumber(@RequestBody CardDto cardDto, @PathVariable @Valid Long id) {
 
-<span class="fc" id="L98">        CardEntity cardEntity = cardDtoFactory.makeCardDtoToEntity(cardDto);</span>
-<span class="pc bpc" id="L99" title="2 of 4 branches missed.">        if (cardEntity.getNumber() == null || cardEntity.getAmount() == null) {</span>
+<span class="nc" id="L98">        CardEntity cardEntity = cardDtoFactory.makeCardDtoToEntity(cardDto);</span>
+<span class="nc bnc" id="L99" title="All 4 branches missed.">        if (cardEntity.getNumber() == null || cardEntity.getAmount() == null) {</span>
 <span class="nc" id="L100">            log.error(&quot;TransferController.transferByCardNumber: Notnull field by CardEntity is null&quot;);</span>
 <span class="nc" id="L101">            return new ResponseEntity&lt;&gt;(HttpStatus.BAD_REQUEST);</span>
         } else {
-<span class="fc" id="L103">            cardEntity.setAccountDetailsId(id);</span>
-<span class="fc" id="L104">            transferService.transferByCardNumber(cardEntity);</span>
-<span class="fc" id="L105">            return new ResponseEntity&lt;&gt; (HttpStatus.OK);</span>
+<span class="nc" id="L103">            cardEntity.setAccountDetailsId(id);</span>
+<span class="nc" id="L104">            transferService.transferByCardNumber(cardEntity);</span>
+<span class="nc" id="L105">            return new ResponseEntity&lt;&gt; (HttpStatus.OK);</span>
         }
 
     }
@@ -118,14 +118,14 @@ public class TransferController {
     @Operation(summary = &quot;Перевод по номеру телефона&quot;, description = &quot;Выполненяем перевод по номеру телефона&quot;)
     public ResponseEntity&lt;HttpStatus&gt; transferByPhoneNumber(@RequestBody PhoneDto phoneDto, @PathVariable @Valid Long id) {
 
-<span class="fc" id="L121">        PhoneEntity phoneEntity = phoneDtoFactory.makePhoneDtoToEntity(phoneDto);</span>
-<span class="pc bpc" id="L122" title="2 of 4 branches missed.">        if (phoneEntity.getNumber() == null || phoneEntity.getAmount() == null) {</span>
+<span class="nc" id="L121">        PhoneEntity phoneEntity = phoneDtoFactory.makePhoneDtoToEntity(phoneDto);</span>
+<span class="nc bnc" id="L122" title="All 4 branches missed.">        if (phoneEntity.getNumber() == null || phoneEntity.getAmount() == null) {</span>
 <span class="nc" id="L123">            log.error(&quot;TransferController.transferByPhoneNumber: Notnull field by PhoneEntity is null&quot;);</span>
 <span class="nc" id="L124">            return new ResponseEntity&lt;&gt;(HttpStatus.BAD_REQUEST);</span>
         } else {
-<span class="fc" id="L126">            phoneEntity.setAccountDetailsId(id);</span>
-<span class="fc" id="L127">            transferService.transferByPhoneNumber(phoneEntity);</span>
-<span class="fc" id="L128">            return new ResponseEntity&lt;&gt;(HttpStatus.OK);</span>
+<span class="nc" id="L126">            phoneEntity.setAccountDetailsId(id);</span>
+<span class="nc" id="L127">            transferService.transferByPhoneNumber(phoneEntity);</span>
+<span class="nc" id="L128">            return new ResponseEntity&lt;&gt;(HttpStatus.OK);</span>
         }
     }
 }

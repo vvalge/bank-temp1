@@ -36,7 +36,8 @@
 <error line="121" column="21" severity="error" message="Variable &apos;phoneEntity&apos; should be declared final." source="com.puppycrawl.tools.checkstyle.checks.coding.FinalLocalVariableCheck"/>
 </file>
 <file name="D:\KATA\Project\p_ss_bank_25\transfer\src\main\java\com\bank\transfer\dto\AccountDto.java">
-<error line="13" severity="error" message="Line is longer than 120 characters (found 131)." source="com.puppycrawl.tools.checkstyle.checks.sizes.LineLengthCheck"/>
+<error line="3" column="8" severity="error" message="Unused import - com.fasterxml.jackson.annotation.JsonProperty." source="com.puppycrawl.tools.checkstyle.checks.imports.UnusedImportsCheck"/>
+<error line="14" severity="error" message="Line is longer than 120 characters (found 131)." source="com.puppycrawl.tools.checkstyle.checks.sizes.LineLengthCheck"/>
 </file>
 <file name="D:\KATA\Project\p_ss_bank_25\transfer\src\main\java\com\bank\transfer\dto\CardDto.java">
 <error line="13" severity="error" message="Line is longer than 120 characters (found 131)." source="com.puppycrawl.tools.checkstyle.checks.sizes.LineLengthCheck"/>

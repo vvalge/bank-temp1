@@ -20,12 +20,12 @@ import java.math.BigDecimal;
 /**
  * Класс модели для переводов по номеру карты
  */
-<span class="pc" id="L23">@Builder</span>
+<span class="nc" id="L23">@Builder</span>
 @Getter
-<span class="fc" id="L25">@Setter</span>
+<span class="nc" id="L25">@Setter</span>
 @FieldDefaults(level = AccessLevel.PRIVATE)
-<span class="fc" id="L27">@NoArgsConstructor</span>
-<span class="fc" id="L28">@AllArgsConstructor</span>
+<span class="nc" id="L27">@NoArgsConstructor</span>
+<span class="nc" id="L28">@AllArgsConstructor</span>
 @Entity
 @Table(name = &quot;card_transfer&quot;, schema = &quot;transfer&quot;)
 public class CardEntity {
@@ -35,32 +35,32 @@ public class CardEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(nullable = false)
-<span class="fc" id="L38">    Long id;</span>
+<span class="nc" id="L38">    Long id;</span>
 
     /**
      * номер карты по которому переводить деньги
      */
     @NotEmpty
     @Column(name = &quot;card_number&quot;, unique = true, nullable = false)
-<span class="fc" id="L45">    Long number;</span>
+<span class="nc" id="L45">    Long number;</span>
 
     /**
      * сумма перевода
      */
     @NotNull
     @Column(nullable = false, precision = 20, scale = 2)
-<span class="fc" id="L52">    BigDecimal amount;</span>
+<span class="nc" id="L52">    BigDecimal amount;</span>
 
     /**
      * цель перевода денег
      */
-<span class="fc" id="L57">    String purpose;</span>
+<span class="nc" id="L57">    String purpose;</span>
 
     /**
      * технический идентификатор банковского счета
      */
     @Column(name = &quot;account_details_id&quot;, nullable = false)
-<span class="fc" id="L63">    Long accountDetailsId;</span>
+<span class="nc" id="L63">    Long accountDetailsId;</span>
 
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

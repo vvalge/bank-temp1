@@ -13,46 +13,48 @@ import com.bank.transfer.model.PhoneEntity;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.AccessLevel;
 import lombok.experimental.FieldDefaults;
-import org.junit.Before;
-import org.junit.Test;
-import org.junit.runner.RunWith;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
-import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.context.WebApplicationContext;
-
 import java.math.BigDecimal;
-
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
-/**
- * Класс теста запросов на перевод
- * Класс теста Контроллера
- */
-@RunWith(SpringJUnit4ClassRunner.class)
+@ExtendWith(MockitoExtension.class)
 @SpringBootTest(classes = TransferApplication.class)
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class TransferControllerTest {
 
-    MockMvc mvc;
     @Autowired
     AccountDtoFactory accountDtoFactory;
     @Autowired
     CardDtoFactory cardDtoFactory;
     @Autowired
     PhoneDtoFactory phoneDtoFactory;
+
     @Autowired
     WebApplicationContext context;
 
-    @Before
+    MockMvc mvc;
+
+    ObjectMapper mapper;
+
+    /**
+     * Метод инициализации MockMvc
+     */
+    @BeforeEach
     public void before() {
         mvc = MockMvcBuilders.webAppContextSetup(context).build();
+        mapper = new ObjectMapper();
     }
 
     /**
@@ -63,26 +65,24 @@ public class TransferControllerTest {
     @Test
     public void transferByAccountNumber() throws Exception {
 
-        ObjectMapper mapper = new ObjectMapper();
         AccountEntity account = new AccountEntity();
-        AccountDto accountDto1 = new AccountDto();
-
         account.setNumber(11L);
         account.setAmount(new BigDecimal("10.10"));
         account.setPurpose("Transfer by account number");
         AccountDto accountDto = accountDtoFactory.makeAccountEntityToDto(account);
 
-        accountDto1.setId(11L);
+        AccountDto accountDto1 = new AccountDto();
         accountDto1.setNumber(11L);
         accountDto1.setPurpose("asa");
         accountDto1.setAmount(new BigDecimal("11.11"));
+        accountDto1.setId(11L);
 
         mvc.perform(
-                MockMvcRequestBuilders.post("/account/12")
-                        .contentType(MediaType.APPLICATION_JSON)
-                        .accept(MediaType.APPLICATION_JSON)
-                        .content(mapper.writeValueAsString(accountDto))
-                        .param("id", "12"))
+                        MockMvcRequestBuilders.post("/account/12")
+                                .contentType(MediaType.APPLICATION_JSON)
+                                .accept(MediaType.APPLICATION_JSON)
+                                .content(mapper.writeValueAsString(accountDto))
+                                .param("id", "12"))
                 .andExpect(status().isOk())
                 .andDo(print());
         mvc.perform(
@@ -103,20 +103,12 @@ public class TransferControllerTest {
     @Test
     public void transferByCardNumber() throws Exception {
 
-        ObjectMapper mapper = new ObjectMapper();
         CardEntity card = new CardEntity();
-        CardEntity card1 = new CardEntity();
-
         card.setNumber(11L);
         card.setAmount(new BigDecimal("10.10"));
         card.setPurpose("Transfer by account number");
         CardDto cardDto = cardDtoFactory.makeCardEntityToDto(card);
-
-        card1.setId(12L);
-        card1.setNumber(11L);
-        card1.setAmount(new BigDecimal("11.11"));
-        card1.setPurpose("Transfer by account number");
-        CardDto cardDto1 = cardDtoFactory.makeCardEntityToDto(card1);
+        CardDto cardDto1 = new CardDto(1L, 1L, new BigDecimal("10.10"), null, null);
 
         mvc.perform(
                         MockMvcRequestBuilders.post("/card/12")
@@ -144,9 +136,7 @@ public class TransferControllerTest {
     @Test
     public void transferByPhoneNumber() throws Exception {
 
-        ObjectMapper mapper = new ObjectMapper();
         PhoneEntity phone = new PhoneEntity();
-
         phone.setNumber(11L);
         phone.setAmount(new BigDecimal("10.10"));
         phone.setPurpose("Transfer by account number");

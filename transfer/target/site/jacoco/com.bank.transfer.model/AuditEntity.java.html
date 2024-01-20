@@ -20,9 +20,9 @@ import java.time.ZonedDateTime;
  */
 <span class="nc" id="L21">@Builder</span>
 @Getter
-<span class="pc" id="L23">@Setter</span>
+<span class="nc" id="L23">@Setter</span>
 @FieldDefaults(level = AccessLevel.PRIVATE)
-<span class="fc" id="L25">@NoArgsConstructor</span>
+<span class="nc" id="L25">@NoArgsConstructor</span>
 <span class="nc" id="L26">@AllArgsConstructor</span>
 @Entity
 @Table(name = &quot;audit&quot;, schema = &quot;transfer&quot;)
@@ -33,7 +33,7 @@ public class AuditEntity {
      */
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-<span class="fc" id="L36">    Long id;</span>
+<span class="nc" id="L36">    Long id;</span>
 
     /**
      * тип сущности

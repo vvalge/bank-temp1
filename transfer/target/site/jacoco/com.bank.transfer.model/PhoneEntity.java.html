@@ -19,12 +19,12 @@ import java.math.BigDecimal;
 /**
  * Класс модели для переводов по номеру телефона
  */
-<span class="pc" id="L22">@Builder</span>
+<span class="nc" id="L22">@Builder</span>
 @Getter
-<span class="fc" id="L24">@Setter</span>
+<span class="nc" id="L24">@Setter</span>
 @FieldDefaults(level = AccessLevel.PRIVATE)
-<span class="fc" id="L26">@NoArgsConstructor</span>
-<span class="fc" id="L27">@AllArgsConstructor</span>
+<span class="nc" id="L26">@NoArgsConstructor</span>
+<span class="nc" id="L27">@AllArgsConstructor</span>
 @Entity
 @Table(name = &quot;phone_transfer&quot;, schema = &quot;transfer&quot;)
 public class PhoneEntity {
@@ -35,31 +35,31 @@ public class PhoneEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(nullable = false)
-<span class="fc" id="L38">    Long id;</span>
+<span class="nc" id="L38">    Long id;</span>
 
     /**
      * номер телефона по которому переводить деньги
      */
     @NotNull
     @Column(name = &quot;phone_number&quot;, nullable = false)
-<span class="fc" id="L45">    Long number;</span>
+<span class="nc" id="L45">    Long number;</span>
 
     /**
      * сумма перевода
      */
     @NotNull
     @Column(nullable = false)
-<span class="fc" id="L52">    BigDecimal amount;</span>
+<span class="nc" id="L52">    BigDecimal amount;</span>
 
     /**
      * цель перевода денег
      */
-<span class="fc" id="L57">    String purpose;</span>
+<span class="nc" id="L57">    String purpose;</span>
 
     /**
      * технический идентификатор банковского счета
      */
     @Column(name = &quot;account_details_id&quot;, nullable = false)
-<span class="fc" id="L63">    Long accountDetailsId;</span>
+<span class="nc" id="L63">    Long accountDetailsId;</span>
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

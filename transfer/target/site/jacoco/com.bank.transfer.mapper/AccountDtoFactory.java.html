@@ -8,7 +8,7 @@ import org.springframework.stereotype.Component;
  * Класс преобразования модели для переводов по номеру счета в Dto и обратно
  */
 @Component
-<span class="fc" id="L11">public class AccountDtoFactory {</span>
+<span class="nc" id="L11">public class AccountDtoFactory {</span>
 
     /**
      * метод преобразования модели в Dto
@@ -16,13 +16,13 @@ import org.springframework.stereotype.Component;
      * @return AccountDto
      */
     public AccountDto makeAccountEntityToDto(AccountEntity entity) {
-<span class="fc" id="L19">        return AccountDto.builder()</span>
-<span class="fc" id="L20">                .id(entity.getId())</span>
-<span class="fc" id="L21">                .number(entity.getNumber())</span>
-<span class="fc" id="L22">                .amount(entity.getAmount())</span>
-<span class="fc" id="L23">                .purpose(entity.getPurpose())</span>
-<span class="fc" id="L24">                .accountDetailsId(entity.getAccountDetailsId())</span>
-<span class="fc" id="L25">                .build();</span>
+<span class="nc" id="L19">        return AccountDto.builder()</span>
+<span class="nc" id="L20">                .id(entity.getId())</span>
+<span class="nc" id="L21">                .number(entity.getNumber())</span>
+<span class="nc" id="L22">                .amount(entity.getAmount())</span>
+<span class="nc" id="L23">                .purpose(entity.getPurpose())</span>
+<span class="nc" id="L24">                .accountDetailsId(entity.getAccountDetailsId())</span>
+<span class="nc" id="L25">                .build();</span>
     }
 
     /**
@@ -31,13 +31,13 @@ import org.springframework.stereotype.Component;
      * @return AccountEntity
      */
     public AccountEntity makeAccountDtoToEntity(AccountDto dto) {
-<span class="fc" id="L34">        return AccountEntity.builder()</span>
-<span class="fc" id="L35">                .id(dto.getId())</span>
-<span class="fc" id="L36">                .number(dto.getNumber())</span>
-<span class="fc" id="L37">                .amount(dto.getAmount())</span>
-<span class="fc" id="L38">                .purpose(dto.getPurpose())</span>
-<span class="fc" id="L39">                .accountDetailsId(dto.getAccountDetailsId())</span>
-<span class="fc" id="L40">                .build();</span>
+<span class="nc" id="L34">        return AccountEntity.builder()</span>
+<span class="nc" id="L35">                .id(dto.getId())</span>
+<span class="nc" id="L36">                .number(dto.getNumber())</span>
+<span class="nc" id="L37">                .amount(dto.getAmount())</span>
+<span class="nc" id="L38">                .purpose(dto.getPurpose())</span>
+<span class="nc" id="L39">                .accountDetailsId(dto.getAccountDetailsId())</span>
+<span class="nc" id="L40">                .build();</span>
     }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>
