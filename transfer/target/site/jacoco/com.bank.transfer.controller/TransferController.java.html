@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="ru"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>TransferController.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">transfer</a> &gt; <a href="index.source.html" class="el_package">com.bank.transfer.controller</a> &gt; <span class="el_source">TransferController.java</span></div><h1>TransferController.java</h1><pre class="source lang-java linenums">package com.bank.transfer.controller;
+
+import com.bank.transfer.dto.AccountDto;
+import com.bank.transfer.dto.CardDto;
+import com.bank.transfer.dto.PhoneDto;
+import com.bank.transfer.mapper.AccountDtoFactory;
+import com.bank.transfer.mapper.CardDtoFactory;
+import com.bank.transfer.mapper.PhoneDtoFactory;
+import com.bank.transfer.model.AccountEntity;
+import com.bank.transfer.model.CardEntity;
+import com.bank.transfer.model.PhoneEntity;
+import com.bank.transfer.service.TransferService;
+import io.swagger.v3.oas.annotations.OpenAPIDefinition;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.info.Info;
+import lombok.AccessLevel;
+import lombok.AllArgsConstructor;
+import lombok.experimental.FieldDefaults;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import javax.validation.Valid;
+
+/**
+ * Класс для обработки запросов на перевод
+ */
+<span class="nc" id="L33">@Slf4j</span>
+@RestController
+@OpenAPIDefinition(info = @Info(
+        title = &quot;TransferController&quot;,
+        version = &quot;1.0.0&quot;,
+        description = &quot;контроллер для работы с операциями перевода&quot;))
+<span class="nc" id="L39">@AllArgsConstructor(access = AccessLevel.PUBLIC)</span>
+@FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
+@RequestMapping(&quot;/&quot;)
+public class TransferController {
+
+    /**
+     * @see com.bank.transfer.service.TransferService
+     */
+    TransferService transferService;
+
+    /**
+     * @see com.bank.transfer.mapper.AccountDtoFactory
+     */
+    AccountDtoFactory accountDtoFactory;
+
+    /**
+     * @see com.bank.transfer.model.CardEntity
+     */
+    CardDtoFactory cardDtoFactory;
+
+    /**
+     * @see com.bank.transfer.model.PhoneEntity
+     */
+    PhoneDtoFactory phoneDtoFactory;
+
+    /**
+     * Метод обработки Post запроса на перевод по номеру счета
+     * @param accountDto объект модели &quot;AccountEntity&quot;
+     * @param id технический идентификатор банковского счета
+     * @return статус выполнения запроса
+     */
+    //-------- ПЕРЕВОД ----------- //
+    // перевод по номеру счета
+    @PostMapping(path = &quot;/account/{id}&quot;, consumes = &quot;application/json&quot;, produces = &quot;application/json&quot;)
+    @Operation(summary = &quot;Перевод по номеру счета&quot;, description = &quot;Выполненяем перевод по номеру счета&quot;)
+    public ResponseEntity&lt;HttpStatus&gt; transferByAccountNumber(@RequestBody AccountDto accountDto, @PathVariable @Valid Long id) {
+
+<span class="nc" id="L76">        AccountEntity accountEntity = accountDtoFactory.makeAccountDtoToEntity(accountDto);</span>
+<span class="nc bnc" id="L77" title="All 4 branches missed.">        if (accountEntity.getNumber() == null || accountEntity.getAmount() == null) {</span>
+<span class="nc" id="L78">            log.error(&quot;TransferController.transferByAccountNumber: Notnull field by AccountEntity is null&quot;);</span>
+<span class="nc" id="L79">            return new ResponseEntity&lt;&gt;(HttpStatus.BAD_REQUEST);</span>
+        } else {
+<span class="nc" id="L81">            accountEntity.setAccountDetailsId(id);</span>
+<span class="nc" id="L82">            transferService.transferByAccountNumber(accountEntity);</span>
+<span class="nc" id="L83">            return new ResponseEntity&lt;&gt;(HttpStatus.OK);</span>
+        }
+    }
+
+    /**
+     * Метод обработки Post запроса на перевод по номеру карты
+     * @param cardDto объект модели &quot;CardEntity&quot;
+     * @param id технический идентификатор банковского счета
+     * @return статус выполнения запроса
+     */
+    // перевод по номеру карты
+    @PostMapping(&quot;/card/{id}&quot;)
+    @Operation(summary = &quot;Перевод по номеру карты&quot;, description = &quot;Выполненяем перевод по номеру карты&quot;)
+    public ResponseEntity&lt;HttpStatus&gt; transferByCardNumber(@RequestBody CardDto cardDto, @PathVariable @Valid Long id) {
+
+<span class="nc" id="L98">        CardEntity cardEntity = cardDtoFactory.makeCardDtoToEntity(cardDto);</span>
+<span class="nc bnc" id="L99" title="All 4 branches missed.">        if (cardEntity.getNumber() == null || cardEntity.getAmount() == null) {</span>
+<span class="nc" id="L100">            log.error(&quot;TransferController.transferByCardNumber: Notnull field by CardEntity is null&quot;);</span>
+<span class="nc" id="L101">            return new ResponseEntity&lt;&gt;(HttpStatus.BAD_REQUEST);</span>
+        } else {
+<span class="nc" id="L103">            cardEntity.setAccountDetailsId(id);</span>
+<span class="nc" id="L104">            transferService.transferByCardNumber(cardEntity);</span>
+<span class="nc" id="L105">            return new ResponseEntity&lt;&gt; (HttpStatus.OK);</span>
+        }
+
+    }
+
+    /**
+     * Метод обработки Post запроса на перевод по номеру телефона
+     * @param phoneDto объект модели &quot;PhoneEntity&quot;
+     * @param id технический идентификатор банковского счета
+     * @return статус выполнения запроса
+     */
+    // перевод по номеру телефона
+    @PostMapping(&quot;/phone/{id}&quot;)
+    @Operation(summary = &quot;Перевод по номеру телефона&quot;, description = &quot;Выполненяем перевод по номеру телефона&quot;)
+    public ResponseEntity&lt;HttpStatus&gt; transferByPhoneNumber(@RequestBody PhoneDto phoneDto, @PathVariable @Valid Long id) {
+
+<span class="nc" id="L121">        PhoneEntity phoneEntity = phoneDtoFactory.makePhoneDtoToEntity(phoneDto);</span>
+<span class="nc bnc" id="L122" title="All 4 branches missed.">        if (phoneEntity.getNumber() == null || phoneEntity.getAmount() == null) {</span>
+<span class="nc" id="L123">            log.error(&quot;TransferController.transferByPhoneNumber: Notnull field by PhoneEntity is null&quot;);</span>
+<span class="nc" id="L124">            return new ResponseEntity&lt;&gt;(HttpStatus.BAD_REQUEST);</span>
+        } else {
+<span class="nc" id="L126">            phoneEntity.setAccountDetailsId(id);</span>
+<span class="nc" id="L127">            transferService.transferByPhoneNumber(phoneEntity);</span>
+<span class="nc" id="L128">            return new ResponseEntity&lt;&gt;(HttpStatus.OK);</span>
+        }
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

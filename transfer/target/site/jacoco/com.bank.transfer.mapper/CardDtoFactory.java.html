@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="ru"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>CardDtoFactory.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">transfer</a> &gt; <a href="index.source.html" class="el_package">com.bank.transfer.mapper</a> &gt; <span class="el_source">CardDtoFactory.java</span></div><h1>CardDtoFactory.java</h1><pre class="source lang-java linenums">package com.bank.transfer.mapper;
+
+import com.bank.transfer.dto.CardDto;
+import com.bank.transfer.model.CardEntity;
+import org.springframework.stereotype.Component;
+
+/**
+ * Класс преобразования модели для переводов по номеру карты в Dto и обратно
+ */
+@Component
+<span class="nc" id="L11">public class CardDtoFactory {</span>
+
+    /**
+     * метод преобразования модели в Dto
+     * @param entity модель для переводов по номеру карты
+     * @return CardDto
+     */
+    public CardDto makeCardEntityToDto(CardEntity entity) {
+<span class="nc" id="L19">        return CardDto.builder()</span>
+<span class="nc" id="L20">                .id(entity.getId())</span>
+<span class="nc" id="L21">                .number(entity.getNumber())</span>
+<span class="nc" id="L22">                .amount(entity.getAmount())</span>
+<span class="nc" id="L23">                .purpose(entity.getPurpose())</span>
+<span class="nc" id="L24">                .accountDetailsId(entity.getAccountDetailsId())</span>
+<span class="nc" id="L25">                .build();</span>
+    }
+
+    /**
+     * метод преобразования Dto в модель
+     * @param dto Dto для переводов по номеру телефона
+     * @return CardEntity
+     */
+    public CardEntity makeCardDtoToEntity(CardDto dto) {
+<span class="nc" id="L34">        return CardEntity.builder()</span>
+<span class="nc" id="L35">                .id(dto.getId())</span>
+<span class="nc" id="L36">                .number(dto.getNumber())</span>
+<span class="nc" id="L37">                .amount(dto.getAmount())</span>
+<span class="nc" id="L38">                .purpose(dto.getPurpose())</span>
+<span class="nc" id="L39">                .accountDetailsId(dto.getAccountDetailsId())</span>
+<span class="nc" id="L40">                .build();</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

@@ -2,6 +2,7 @@ server:
   port: 8092
   servlet:
     context-path: /api/transfer
+
 management:
   server:
     port: 8191
@@ -11,12 +12,21 @@ management:
   endpoints:
     web:
       exposure:
-        include: '*'
+        include: health,prometheus
+  metrics:
+    export:
+      prometheus:
+        enabled: true
+    distribution:
+      percentiles-histogram:
+        "[http.server.requests]": true
+
 spring:
   datasource:
-    url: jdbc:postgresql://localhost:5432/postgres
-    username: user
-    password: password
+    url: jdbc:postgresql://localhost:5433/postgres
+    username: postgres
+    password: 12345
+
   liquibase:
     default-schema: transfer
     change-log: db/changelog/db.changelog-master.yaml
@@ -24,3 +34,16 @@ spring:
     drop-first: false
   application:
     name: transfer-app
+
+eureka:
+  instance:
+    hostname: transfer
+    prefer-ip-address: true
+    lease-renewal-interval-in-seconds: 10
+    lease-expiration-duration-in-seconds: 20
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka/
+
+
+
