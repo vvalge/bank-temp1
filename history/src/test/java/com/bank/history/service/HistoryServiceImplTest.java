@@ -24,7 +24,7 @@ class HistoryServiceImplTest {
     HistoryRepository historyRepository;
 
     @Test
-    void getAllHistory() {
+    void getAllHistoryTest() {
         final HistoryEntity historyEntity = new HistoryEntity(1L,
                 2L,2L,null,
                 2L,2L,2L);
@@ -37,7 +37,7 @@ class HistoryServiceImplTest {
     }
 
     @Test
-    void getHistoryById() {
+    void getHistoryByIdTest() {
         final Long historyId = 1L;
         final HistoryEntity historyEntity = new HistoryEntity(historyId,
                 2L, 2L, null,
@@ -53,7 +53,7 @@ class HistoryServiceImplTest {
     }
 
     @Test
-    void deleteHistory() {
+    void deleteHistoryTest() {
         final HistoryEntity historyEntity = new HistoryEntity(1L,
                 2L,2L,null,
                 2L,2L,2L);
@@ -63,7 +63,7 @@ class HistoryServiceImplTest {
     }
 
     @Test
-    void saveHistory() {
+    void saveHistoryTest() {
         final HistoryEntity historyEntity = new HistoryEntity(1L,
                 2L,2L,null,
                 2L,2L,2L);
@@ -78,8 +78,31 @@ class HistoryServiceImplTest {
         verify(this.historyRepository).save(any(HistoryEntity.class));
     }
 
+    @Test
+    void updateHistoryTest() {
+        final Long id = 1L;
+        final HistoryEntity existingHistoryEntity = new HistoryEntity(id, 2L, 2L, 3L, 2L, 2L, 2L);
+        final HistoryDto updatedHistoryDto = new HistoryDto(id, 2L, 2L, 3L, 2L, 2L, 2L);
 
+        when(historyRepository.findById(id)).thenReturn(Optional.of(existingHistoryEntity));
+        when(historyRepository.save(any(HistoryEntity.class))).thenAnswer(invocation -> invocation.getArgument(0));
 
+        final HistoryDto actualAudit = historyServiceimpl.getHistoryById(id);
 
+        assertEquals(updatedHistoryDto, actualAudit);
+        historyServiceimpl.updateHistory(id, updatedHistoryDto);
+
+        final HistoryEntity updatedHistoryEntity = new HistoryEntity(
+                updatedHistoryDto.getId(),
+                updatedHistoryDto.getTransferAuditId(),
+                updatedHistoryDto.getProfileAuditId(),
+                updatedHistoryDto.getAccountAuditId(),
+                updatedHistoryDto.getAntiFraudAuditId(),
+                updatedHistoryDto.getPublicBankInfoAuditId(),
+                updatedHistoryDto.getAuthorizationAuditId()
+        );
+
+        verify(this.historyRepository, times(1)).save(updatedHistoryEntity);
+    }
 
 }
