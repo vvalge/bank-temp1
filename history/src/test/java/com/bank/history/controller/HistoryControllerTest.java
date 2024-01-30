@@ -12,7 +12,6 @@ import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -28,9 +27,23 @@ class HistoryControllerTest {
 
     private final HistoryMapper historyMapper = Mappers.getMapper(HistoryMapper.class);
 
+    @Test
+    void getAllHistoryTest() {
+        final HistoryEntity historyEntity = new HistoryEntity(1L, 2L, 2L, null, 2L, 2L, 2L);
+        final HistoryDto historyDto = new HistoryDto(1L, 2L, 2L, null, 2L, 2L, 2L);
+
+        when(historyService.getAllHistory()).thenReturn(List.of(historyMapper.toDto(historyEntity)));
+        ResponseEntity<List<HistoryDto>> responseEntity = ResponseEntity.ok(List.of(historyDto));
+        ResponseEntity<List<HistoryDto>> actualResponseEntity = historyController.getAllHistory();
+
+
+        assertEquals(responseEntity.getBody(), actualResponseEntity.getBody());
+        verify(historyService, times(1)).getAllHistory();
+    }
+
 
     @Test
-    void getHistoryById() {
+    void getHistoryByIdTest() {
         final HistoryEntity historyEntity = new HistoryEntity(1L,
                 2L,2L,null,
                 2L,2L,2L);
@@ -47,7 +60,7 @@ class HistoryControllerTest {
 
     }
     @Test
-    void deleteHistoryById() {
+    void deleteHistoryByIdTest() {
         final Long id = 1L;
 
         when(historyService.getHistoryById(id)).thenReturn(historyMapper.toDto(new HistoryEntity()));
@@ -61,7 +74,7 @@ class HistoryControllerTest {
 
 
     @Test
-    void saveHistory() {
+    void saveHistoryTest() {
         final HistoryDto historyDto = new HistoryDto(1L, 2L, 2L, null, 2L, 2L, 2L);
         final ResponseEntity<HistoryDto> responseEntity = ResponseEntity.status(HttpStatus.CREATED).body(historyDto);
         final ResponseEntity<HistoryDto> actualResponseEntity = historyController.saveHistory(historyDto);
@@ -71,7 +84,7 @@ class HistoryControllerTest {
     }
 
     @Test
-    void updateHistory() {
+    void updateHistoryTest() {
         final Long id = 1L;
         final HistoryEntity existingHistoryEntity = new HistoryEntity(id, 2L, 2L, null, 2L, 2L, 2L);
         final HistoryDto updatedHistoryDto = new HistoryDto(id, 3L, 3L, null, 3L, 3L, 3L);

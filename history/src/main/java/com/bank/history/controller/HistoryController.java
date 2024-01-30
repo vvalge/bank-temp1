@@ -37,10 +37,12 @@ public class HistoryController {
 
     @GetMapping
     @Operation(summary = "Получение всех записей")
-    public List<HistoryDto> getAllHistory() {
+    public ResponseEntity<List<HistoryDto>> getAllHistory() {
         log.info("Запрос на получение всей истории");
-        return historyService.getAllHistory();
+        List<HistoryDto> historyList = historyService.getAllHistory();
+        return new ResponseEntity<>(historyList, HttpStatus.OK);
     }
+
 
     @GetMapping("/{id}")
     @Operation(summary = "Получение записи по id")
