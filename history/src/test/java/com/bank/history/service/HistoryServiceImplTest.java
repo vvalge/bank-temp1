@@ -13,8 +13,12 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import java.util.List;
 import java.util.Optional;
 
-import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.Mockito.*;
+import static org.mockito.Mockito.any;
+import static org.mockito.Mockito.when;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.times;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 @ExtendWith(MockitoExtension.class)
 class HistoryServiceImplTest {
@@ -48,6 +52,7 @@ class HistoryServiceImplTest {
         final HistoryDto foundHistoryDto = historyServiceimpl.getHistoryById(historyId);
         final HistoryDto expectedHistoryDto = HistoryMapper.INSTANCE.toDto(historyEntity);
 
+        assertNotNull(foundHistoryDto);
         assertEquals(expectedHistoryDto, foundHistoryDto);
         verify(this.historyRepository).findById(historyEntity.getId());
     }
@@ -89,6 +94,7 @@ class HistoryServiceImplTest {
 
         final HistoryDto actualAudit = historyServiceimpl.getHistoryById(id);
 
+        assertNotNull(actualAudit);
         assertEquals(updatedHistoryDto, actualAudit);
         historyServiceimpl.updateHistory(id, updatedHistoryDto);
 
