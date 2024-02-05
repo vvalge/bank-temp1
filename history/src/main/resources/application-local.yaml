@@ -1,11 +1,11 @@
 server:
   port: 5432
   servlet:
-    context-path: /api/history
+    context-path: /api/history/
 
 management:
   server:
-    port: 5433
+    port: 5434
   endpoint:
     shutdown:
       enabled: true
