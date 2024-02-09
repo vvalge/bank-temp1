@@ -17,6 +17,7 @@ import lombok.Setter;
 import lombok.experimental.FieldDefaults;
 
 import javax.validation.constraints.NotNull;
+import java.util.Objects;
 
 @Builder
 @Getter
@@ -57,5 +58,25 @@ public class HistoryEntity {
     @NotNull
     @Column
     private Long authorizationAuditId;
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        HistoryEntity that = (HistoryEntity) o;
+        return Objects.equals(id, that.id) &&
+                Objects.equals(transferAuditId, that.transferAuditId) &&
+                Objects.equals(profileAuditId, that.profileAuditId) &&
+                Objects.equals(accountAuditId, that.accountAuditId) &&
+                Objects.equals(antiFraudAuditId, that.antiFraudAuditId) &&
+                Objects.equals(publicBankInfoAuditId, that.publicBankInfoAuditId) &&
+                Objects.equals(authorizationAuditId, that.authorizationAuditId);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, transferAuditId, profileAuditId, accountAuditId, antiFraudAuditId, publicBankInfoAuditId, authorizationAuditId);
+    }
+
 
 }
