@@ -1,10 +1,10 @@
 server:
-  port: 8091
+  port: 8089
   servlet:
     context-path: /api/public-info
 management:
   server:
-    port: 8190
+    port: 8189
   endpoint:
     shutdown:
       enabled: true
@@ -14,8 +14,8 @@ management:
         include: '*'
 spring:
   datasource:
-    url: jdbc:postgresql://localhost:5432/postgres
-    username: user
+    url: jdbc:postgresql://localhost:5433/postgres
+    username: postgres
     password: password
   liquibase:
     default-schema: public_bank_information
