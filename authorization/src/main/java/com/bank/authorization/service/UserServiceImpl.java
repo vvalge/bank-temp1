@@ -34,7 +34,7 @@ public class UserServiceImpl implements UserService {
             throw new RegistrationException("Client already registered");
         }
 
-        userRepository.save(new UserEntity(Long.valueOf(user.getUsername()), user.getPassword(),"USER"));
+        userRepository.save(new UserEntity(Long.valueOf(user.getUsername()),user.getPassword(),"USER"));
         log.info("New user " + user.getUsername() + " add in the database");
     }
 

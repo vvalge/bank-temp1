@@ -5,7 +5,9 @@ import com.bank.authorization.dto.SignInRequestDto;
 import com.bank.authorization.dto.SignUpRequestDto;
 import com.bank.authorization.exception.RegistrationException;
 import lombok.RequiredArgsConstructor;
+import lombok.Setter;
 import lombok.extern.java.Log;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -19,6 +21,7 @@ import java.util.logging.Level;
 
 @Service
 @RequiredArgsConstructor
+@Setter
 @Log
 public class AuthenticationServiceImpl implements AuthenticationService {
     private final UserService userService;
