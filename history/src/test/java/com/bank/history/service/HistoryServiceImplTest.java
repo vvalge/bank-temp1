@@ -17,6 +17,7 @@ import static org.mockito.Mockito.any;
 import static org.mockito.Mockito.when;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.times;
+import static org.mockito.Mockito.lenient;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
@@ -59,12 +60,15 @@ class HistoryServiceImplTest {
 
     @Test
     void deleteHistoryTest() {
-        final HistoryEntity historyEntity = new HistoryEntity(1L,
-                2L,2L,null,
-                2L,2L,2L);
+        final Long historyId = 1L;
+        final HistoryEntity historyEntity = new HistoryEntity(historyId,
+                2L, 2L, null,
+                2L, 2L, 2L);
 
-        historyRepository.deleteById(historyEntity.getId());
-        verify(this.historyRepository).deleteById(historyEntity.getId());
+        lenient().when(historyRepository.findById(historyId)).thenReturn(Optional.of(historyEntity));
+        historyServiceimpl.deleteHistory(historyId);
+
+        verify(historyRepository, times(1)).deleteById(historyId);
     }
 
     @Test
