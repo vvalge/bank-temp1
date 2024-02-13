@@ -1,11 +1,13 @@
 package com.bank.profile.service.classes;
 
-import com.bank.profile.dto.PassportDto;
-import com.bank.profile.exception.NotFoundExceptionEntity;
-import com.bank.profile.mapper.PassportMapperImpl;
-import com.bank.profile.model.Passport;
-import com.bank.profile.repository.PassportRepository;
+
+import com.bank.profile.dto.RegistrationDto;
+import com.bank.profile.exceptionHandler.exception.NotFoundExceptionEntity;
+import com.bank.profile.mapper.interfaces.RegistrationMapperImpl;
+import com.bank.profile.model.Registration;
+
 import com.bank.profile.repository.RegistrationRepository;
+import com.bank.profile.services.classes.RegistrationServiceImpl;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
@@ -26,18 +28,15 @@ import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
-class PassportServiceImplTest {
+class RegistrationServiceImplTest {
     @Mock
-    private PassportRepository repository;
+    private RegistrationRepository repository;
 
     @Mock
-    private RegistrationRepository registrationRepository;
-
-    @Mock
-    private PassportMapperImpl mapper;
-    private static final Passport expectedModel = new Passport();
-    private static final Passport actualModel = new Passport();
-    private static final PassportDto dto = new PassportDto();
+    private RegistrationMapperImpl mapper;
+    private static final Registration expectedModel = new Registration();
+    private static final Registration actualModel = new Registration();
+    private static final RegistrationDto dto = new RegistrationDto();
 
     private static final long id = 1L;
 
@@ -47,7 +46,7 @@ class PassportServiceImplTest {
     }
 
     @InjectMocks
-    private PassportServiceImpl service;
+    private RegistrationServiceImpl service;
 
     @Test
     void testGetById() {
@@ -69,7 +68,6 @@ class PassportServiceImplTest {
     void testCreate() {
         when(mapper.toEntity(dto)).thenReturn(expectedModel);
         when(repository.save(expectedModel)).thenReturn(actualModel);
-        when(registrationRepository.existsById(dto.getRegistrationId())).thenReturn(true);
 
         assertDoesNotThrow(() -> service.create(dto));
 
@@ -83,8 +81,6 @@ class PassportServiceImplTest {
         when(repository.existsById(id)).thenReturn(true);
         when(mapper.toEntity(dto)).thenReturn(expectedModel);
         when(repository.save(expectedModel)).thenReturn(actualModel);
-        when(repository.existsById(id)).thenReturn(true);
-        when(registrationRepository.existsById(dto.getRegistrationId())).thenReturn(true);
 
         assertDoesNotThrow(() -> service.update(id, dto));
 
@@ -122,26 +118,5 @@ class PassportServiceImplTest {
         assertThrows(NotFoundExceptionEntity.class, () -> service.deleteById(id));
 
         verify(repository).deleteById(id);
-    }
-
-    @Test
-    void testCreate_ThrowsNotFoundException() {
-        when(registrationRepository.existsById(dto.getRegistrationId())).thenReturn(false);
-
-        assertThrows(NotFoundExceptionEntity.class, () -> service.create(dto));
-
-        verify(repository, never()).save(any());
-    }
-
-    @Test
-    void testUpdate_ThrowsNotFoundException_if_registrationRepository_return_false() {
-        when(repository.existsById(id)).thenReturn(true);
-        when(registrationRepository.existsById(dto.getRegistrationId())).thenReturn(false);
-
-        assertThrows(NotFoundExceptionEntity.class, () -> service.update(id, dto));
-
-        verify(repository, times(1)).existsById(id);
-        verify(mapper, never()).toEntity(dto);
-        verify(repository, never()).save(any());
     }
 }

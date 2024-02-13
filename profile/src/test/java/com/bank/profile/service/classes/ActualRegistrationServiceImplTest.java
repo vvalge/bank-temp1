@@ -1,14 +1,11 @@
 package com.bank.profile.service.classes;
 
-import com.bank.profile.dto.ProfileDto;
-import com.bank.profile.dto.RegistrationDto;
-import com.bank.profile.exception.NotFoundExceptionEntity;
-import com.bank.profile.mapper.ProfileMapperImpl;
-import com.bank.profile.mapper.RegistrationMapperImpl;
-import com.bank.profile.model.Profile;
-import com.bank.profile.model.Registration;
-import com.bank.profile.repository.ProfileRepository;
-import com.bank.profile.repository.RegistrationRepository;
+import com.bank.profile.dto.ActualRegistrationDto;
+import com.bank.profile.exceptionHandler.exception.NotFoundExceptionEntity;
+import com.bank.profile.mapper.interfaces.ActualRegistrationMapperImpl;
+import com.bank.profile.model.ActualRegistration;
+import com.bank.profile.repository.ActualRegistrationRepository;
+import com.bank.profile.services.classes.ActualRegistrationServiceImpl;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
@@ -29,15 +26,15 @@ import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
-class RegistrationServiceImplTest {
+class ActualRegistrationServiceImplTest {
     @Mock
-    private RegistrationRepository repository;
+    private ActualRegistrationRepository repository;
 
     @Mock
-    private RegistrationMapperImpl mapper;
-    private static final Registration expectedModel = new Registration();
-    private static final Registration actualModel = new Registration();
-    private static final RegistrationDto dto = new RegistrationDto();
+    private ActualRegistrationMapperImpl mapper;
+    private static final ActualRegistration expectedModel = new ActualRegistration();
+    private static final ActualRegistration actualModel = new ActualRegistration();
+    private static final ActualRegistrationDto dto = new ActualRegistrationDto();
 
     private static final long id = 1L;
 
@@ -47,7 +44,7 @@ class RegistrationServiceImplTest {
     }
 
     @InjectMocks
-    private RegistrationServiceImpl service;
+    private ActualRegistrationServiceImpl service;
 
     @Test
     void testGetById() {

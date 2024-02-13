@@ -1,12 +1,14 @@
 package com.bank.profile.service.classes;
 
+
 import com.bank.profile.dto.ProfileDto;
-import com.bank.profile.exception.NotFoundExceptionEntity;
+import com.bank.profile.exceptionHandler.exception.NotFoundExceptionEntity;
 import com.bank.profile.mapper.ProfileMapperImpl;
 import com.bank.profile.model.Profile;
 import com.bank.profile.repository.ActualRegistrationRepository;
 import com.bank.profile.repository.PassportRepository;
 import com.bank.profile.repository.ProfileRepository;
+import com.bank.profile.services.classes.ProfileServiceImpl;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;

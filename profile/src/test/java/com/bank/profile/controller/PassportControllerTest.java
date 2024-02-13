@@ -3,7 +3,8 @@ package com.bank.profile.controller;
 import com.bank.profile.dto.PassportDto;
 import com.bank.profile.exceptionHandler.exception.NotFoundExceptionEntity;
 import com.bank.profile.model.Passport;
-import com.bank.profile.services.interfaces.PassportService;
+
+import com.bank.profile.services.interfase.PassportService;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
