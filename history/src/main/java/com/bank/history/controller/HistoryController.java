@@ -39,7 +39,7 @@ public class HistoryController {
     @Operation(summary = "Получение всех записей")
     public ResponseEntity<List<HistoryDto>> getAllHistory() {
         log.info("Запрос на получение всей истории");
-        List<HistoryDto> historyList = historyService.getAllHistory();
+        final List<HistoryDto> historyList = historyService.getAllHistory();
         return new ResponseEntity<>(historyList, HttpStatus.OK);
     }
 
@@ -71,7 +71,7 @@ public class HistoryController {
     @Operation(summary = "Создание новой записи")
     public ResponseEntity<HistoryDto> saveHistory(@RequestBody HistoryDto historyDto) {
         log.info("Запрос на создание новой записи");
-        HistoryDto savedHistory = historyService.saveHistory(historyDto);
+        final HistoryDto savedHistory = historyService.saveHistory(historyDto);
         return new ResponseEntity<>(savedHistory, HttpStatus.CREATED);
     }
 

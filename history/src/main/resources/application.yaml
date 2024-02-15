@@ -3,3 +3,7 @@ spring:
     name: history-app
   profiles:
     active: local
+scrape_configs:
+  - job_name: 'history'
+    static_configs:
+      - targets: ['localhost:5432']

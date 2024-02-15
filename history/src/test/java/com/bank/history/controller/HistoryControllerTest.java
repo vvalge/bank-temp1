@@ -17,7 +17,9 @@ import java.util.List;
 import static org.mockito.Mockito.when;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.times;
+import static org.mockito.Mockito.never;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNull;
 
 
 @ExtendWith(MockitoExtension.class)
@@ -43,7 +45,6 @@ class HistoryControllerTest {
         verify(historyService, times(1)).getAllHistory();
     }
 
-
     @Test
     void getHistoryByIdTest() {
         final HistoryEntity historyEntity = new HistoryEntity(1L,
@@ -53,27 +54,39 @@ class HistoryControllerTest {
                 2L,2L,null,
                 2L,2L,2L);
 
-        final ResponseEntity<HistoryDto> responseEntity = ResponseEntity.ok().body(HistoryDto);
         when(historyService.getHistoryById(1L)).thenReturn(historyMapper.toDto(historyEntity));
-        final  ResponseEntity<HistoryDto> actualResponseEntity = historyController.getHistoryById(1L);
+        ResponseEntity<HistoryDto> actualResponseEntity = historyController.getHistoryById(1L);
 
-        assertEquals(responseEntity,actualResponseEntity);
+        assertEquals(HttpStatus.OK, actualResponseEntity.getStatusCode());
+        assertEquals(HistoryDto, actualResponseEntity.getBody());
         verify(historyService, times(1)).getHistoryById(1L);
 
+        when(historyService.getHistoryById(2L)).thenReturn(null);
+        actualResponseEntity = historyController.getHistoryById(2L);
+
+        assertEquals(HttpStatus.NOT_FOUND, actualResponseEntity.getStatusCode());
+        assertNull(actualResponseEntity.getBody());
+        verify(historyService, times(1)).getHistoryById(2L);
     }
+
     @Test
     void deleteHistoryByIdTest() {
         final Long id = 1L;
 
         when(historyService.getHistoryById(id)).thenReturn(historyMapper.toDto(new HistoryEntity()));
-        historyController.deleteHistoryById(id);
+        ResponseEntity<Void> responseEntity = historyController.deleteHistoryById(id);
 
-        verify(historyService).getHistoryById(id);
-        verify(historyService).deleteHistory(id);
+        assertEquals(HttpStatus.OK, responseEntity.getStatusCode());
+        verify(historyService, times(1)).getHistoryById(id);
+        verify(historyService, times(1)).deleteHistory(id);
+
+        when(historyService.getHistoryById(id)).thenReturn(null);
+        responseEntity = historyController.deleteHistoryById(id);
+
+        assertEquals(HttpStatus.NOT_FOUND, responseEntity.getStatusCode());
+        verify(historyService, times(2)).getHistoryById(id);
+        verify(historyService, times(1)).deleteHistory(id);
     }
-
-
-
 
     @Test
     void saveHistoryTest() {
@@ -91,13 +104,19 @@ class HistoryControllerTest {
         final HistoryEntity existingHistoryEntity = new HistoryEntity(id, 2L, 2L, null, 2L, 2L, 2L);
         final HistoryDto updatedHistoryDto = new HistoryDto(id, 3L, 3L, null, 3L, 3L, 3L);
 
-        when(historyService.getHistoryById(1L)).thenReturn(historyMapper.toDto(existingHistoryEntity));
+        when(historyService.getHistoryById(id)).thenReturn(null);
+        ResponseEntity<Void> responseEntity = historyController.updateHistory(id, updatedHistoryDto);
+
+        assertEquals(HttpStatus.NOT_FOUND, responseEntity.getStatusCode());
+        verify(historyService, never()).updateHistory(id, updatedHistoryDto);
+
+        when(historyService.getHistoryById(id)).thenReturn(historyMapper.toDto(existingHistoryEntity));
         when(historyService.updateHistory(id, updatedHistoryDto)).thenReturn(null);
 
-        ResponseEntity<Void> responseEntity = historyController.updateHistory(id, updatedHistoryDto);
+        responseEntity = historyController.updateHistory(id, updatedHistoryDto);
+
 
         assertEquals(HttpStatus.OK, responseEntity.getStatusCode());
         verify(historyService, times(1)).updateHistory(id, updatedHistoryDto);
     }
-
 }
