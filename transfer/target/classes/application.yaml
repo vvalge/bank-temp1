@@ -1,9 +1,0 @@
-spring:
-  application:
-    name: transfer-app
-  profiles:
-    active: local
-
-logging:
-  level:
-    root: info
