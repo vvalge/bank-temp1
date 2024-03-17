@@ -1,3 +1,0 @@
-databaseChangeLog:
-      - includeAll:
-         path: db/changelog/release-0.1.0.0/
